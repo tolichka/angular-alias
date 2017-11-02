@@ -7,11 +7,18 @@
 </div>
 <h2>Here are some links to help you start: </h2>
 
-<button *ngIf="!started" (click)="started=true">
+<button
+  *ngIf="!started"
+  (click)="started=true">
   Start
 </button>
+
 <app-timer
-  *ngIf="started"
+  *ngIf="started && !gameOver"
   interval="10"
   (finish)="onTimerFinish()">
 </app-timer>
+
+<div *ngIf="gameOver">
+  GAME OVER
+</div>
