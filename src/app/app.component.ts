@@ -7,6 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
+  started = false;
+
   onTimerFinish() {
     console.log('time is out');
   }

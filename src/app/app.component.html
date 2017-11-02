@@ -7,8 +7,11 @@
 </div>
 <h2>Here are some links to help you start: </h2>
 
-
+<button *ngIf="!started" (click)="started=true">
+  Start
+</button>
 <app-timer
+  *ngIf="started"
   interval="10"
   (finish)="onTimerFinish()">
 </app-timer>
