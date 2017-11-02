@@ -9,14 +9,15 @@
 
 <button
   *ngIf="!started"
-  (click)="started=true">
+  (click)="started=true; timer.start()">
   Start
 </button>
 
 <app-timer
-  *ngIf="started && !gameOver"
+  #timer
+  [hidden]="!started || gameOver"
   interval="10"
-  (finish)="onTimerFinish()">
+  (finish)="gameOver=true">
 </app-timer>
 
 <div *ngIf="gameOver">

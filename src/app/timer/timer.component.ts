@@ -14,7 +14,9 @@ export class TimerComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit() { }
+
+  start() {
     this.timeLeft = this.interval;
     const handle = setInterval(() => {
       this.timeLeft--;
