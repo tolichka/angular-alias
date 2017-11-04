@@ -1,0 +1,10 @@
+.active {
+  border: 2px solid;
+}
+.word {
+  display: flex;
+}
+
+.text {
+  flex-grow: 1;
+}
