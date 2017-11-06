@@ -10,3 +10,6 @@ app-timer {
   max-width: 280px;
   margin: 0 auto;
 }
+label {
+  display: block
+}

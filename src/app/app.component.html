@@ -32,7 +32,7 @@
   Time left:
   <app-timer
     #timer
-    interval="10"
+    [interval]="roundDuration"
     (finish)="gameOver=true">
   </app-timer>
 </div>
@@ -44,6 +44,19 @@
             (played)="onWordReplayed($event)">
   </app-word>
   <div class="text-center">GAME OVER</div>
+</div>
+
+<div>
+  <form #frm="ngForm" (ngSubmit)="onFormSubmit(frm)">
+    <label>Round duration: {{ roundDuration }}(sec.)</label>
+    <input [(ngModel)]="roundDuration" type="range" min="10" max="180" name="roundDuration"/>
+
+    <label>Game title: </label>
+    <input [(ngModel)]="gameTitle" #title="ngModel" type="text" name="gameTitle" required minlength="5"/>
+    <div *ngIf="frm.controls.gameTitle?.touched && title.errors?.required">This field is required!</div>
+    <div *ngIf="title.touched && title.errors?.minlength">Its too short!</div>
+    <button type="submit">Submit</button>
+  </form>
 </div>
 
 

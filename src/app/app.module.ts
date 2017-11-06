@@ -5,6 +5,8 @@ import { AppComponent } from './app.component';
 import { TimerComponent } from './timer/timer.component';
 import { WordComponent } from './word/word.component';
 import { HttpModule } from '@angular/http';
+import { VocabularyService } from './services/vocabulary.service';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -14,9 +16,10 @@ import { HttpModule } from '@angular/http';
   ],
   imports: [
     BrowserModule,
-    HttpModule
+    HttpModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [VocabularyService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -7,20 +7,20 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class TimerComponent implements OnInit {
 
-  @Input() interval;
+  @Input() interval = 0;
   @Output() finish = new EventEmitter();
 
-  timeLeft = 0;
+  // timeLeft = 0;
 
   constructor() { }
 
   ngOnInit() { }
 
   start() {
-    this.timeLeft = this.interval;
+    // this.timeLeft = this.interval;
     const handle = setInterval(() => {
-      this.timeLeft--;
-      if (this.timeLeft <= 0) {
+      this.interval --;
+      if (this.interval <= 0) {
         clearInterval(handle);
         this.finish.emit();
       }
