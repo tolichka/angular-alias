@@ -1,0 +1,12 @@
+app-timer {
+  display: inline-block;
+}
+.start-btn {
+  display: block;
+  margin: 0 auto;
+  width: 100px;
+}
+.history, .word {
+  max-width: 280px;
+  margin: 0 auto;
+}

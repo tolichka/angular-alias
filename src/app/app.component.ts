@@ -7,7 +7,6 @@ import { Http } from '@angular/http';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
   started = false;
   gameOver = false;
 
@@ -28,19 +27,20 @@ export class AppComponent {
 
   private wordId = 0;
 
-  onTimerFinish() {
-    this.gameOver = true;
-  }
-
   onWordPlayed(word) {
     this.history.push(word);
     this.word = this.getNextWord();
   }
 
-  getNextWord() {
-    return this.vocabulary[this.wordId++];
+  onWordReplayed(word) {
+    this.history.find(_ => _.word === word.word).guessed = word.guessed;
   }
 
+  getNextWord() {
+    return this.vocabulary[this.wordId++] || '';
+  }
+
+  // todo: make sure score >= 0
   getScore() {
     console.log('calc score');
     return this.history.reduce((acc, word) => {
