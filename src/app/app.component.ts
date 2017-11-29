@@ -20,7 +20,6 @@ export class AppComponent implements OnInit {
 
   async ngOnInit() {
     this.word = await this.vocabulary.getNextWord();
-    console.log(this.form);
   }
 
   async onWordPlayed(word) {
