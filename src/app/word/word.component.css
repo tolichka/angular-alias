@@ -1,0 +1,30 @@
+.word {
+  display: flex;
+}
+
+.text {
+  flex-grow: 1;
+  text-transform: uppercase;
+}
+
+.btn {
+  font-size: 18px;
+  background: #000;
+  color: #fff;
+  border: 2px solid transparent;
+  padding: 2px 5px;
+  margin-left: 5px;
+  width: 30px;
+}
+
+.plus {
+  background: green;
+}
+
+.minus {
+  background: red;
+}
+
+.active {
+  border: 2px solid #fff;
+}

@@ -1,0 +1,71 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <h1>{{ gameTitle }}</h1>
+  <img src="/assets/images/logo.png" alt="">
+</div>
+
+<div class="form-settings"
+*ngIf="!started"
+>
+  <form #frm="ngForm" (ngSubmit)="onFormSubmit(frm)">
+    <label>Please set round duration: {{ roundDuration }}(in sec.)</label>
+    <input class="f-range" [(ngModel)]="roundDuration" type="range" min="5" max="60" name="roundDuration"/>
+    <br>
+    <br>
+
+    <label>Change game title (optional)</label>
+    <input class="f-text" [(ngModel)]="gameTitle" #title="ngModel" type="text" name="gameTitle" required minlength="3"/>
+    <div class="f-error" *ngIf="frm.controls.gameTitle?.touched && title.errors?.required">Title field is required!</div>
+    <div class="f-error" *ngIf="title.touched && title.errors?.minlength">Title too short!</div>
+    <!-- <button type="submit">Submit</button> -->
+  </form>
+</div>
+
+<div class="text-center score"
+*ngIf="started"
+>
+  Score: {{ getScore() }}
+</div>
+
+<div class="word">
+  <app-word
+    *ngIf="started && !gameOver && word?.length>0"
+    [word]="word"
+    (played)="onWordPlayed($event)"
+  ></app-word>
+</div>
+
+<div class="end-word text-center"
+  *ngIf="started && !gameOver && word?.length==0">
+  Слова закончились!
+</div>
+
+<button
+  class="start-btn"
+  *ngIf="!started"
+  (click)="started=true; timer.start()">
+  Start
+</button>
+
+<div [hidden]="!started || gameOver" class="text-center time-left">
+  Time left:
+  <app-timer
+    #timer
+    [interval]="roundDuration"
+    (finish)="gameOver=true">
+  </app-timer>
+</div>
+
+<div *ngIf="gameOver" class="history">
+  <div class="text-center game-over">Time is over!<br>Check and update your results if neded.</div>
+  <app-word *ngFor="let word of history"
+            [word]="word.word"
+            [guessed]="word.guessed"
+            (played)="onWordReplayed($event)">
+  </app-word>
+
+</div>
+
+
+
+
