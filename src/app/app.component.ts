@@ -32,14 +32,9 @@ export class AppComponent implements OnInit {
     this.history.find(_ => _.word === word.word).guessed = word.guessed;
   }
 
-  // todo: make sure score >= 0
   getScore() {
     return Math.max(this.history.reduce((acc, word) => {
       return word.guessed ? ++acc : --acc;
     }, 0), 0);
-  }
-
-  onFormSubmit(frm) {
-    console.log(frm);
   }
 }
