@@ -11,10 +11,10 @@ export class AppComponent implements OnInit {
   gameOver = false;
   word;
   history = [];
-  roundDuration = 10;
+  roundDuration = 15;
 
   @ViewChild('frm') form;
-  gameTitle = '';
+  gameTitle = 'Alias game';
 
   constructor(private vocabulary: VocabularyService) {}
 
@@ -34,10 +34,9 @@ export class AppComponent implements OnInit {
 
   // todo: make sure score >= 0
   getScore() {
-    console.log('calc score');
     return Math.max(this.history.reduce((acc, word) => {
       return word.guessed ? ++acc : --acc;
-    }, 0));
+    }, 0), 0);
   }
 
   onFormSubmit(frm) {

@@ -1,10 +1,29 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div style="text-align:center">
-  <h1>Alias</h1>
-  <img width="150" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+  <h1>{{ gameTitle }}</h1>
+  <img src="/assets/images/logo.png" alt="">
 </div>
 
-<div class="text-center">
+<div class="form-settings"
+*ngIf="!started"
+>
+  <form #frm="ngForm" (ngSubmit)="onFormSubmit(frm)">
+    <label>Please set round duration: {{ roundDuration }}(in sec.)</label>
+    <input class="f-range" [(ngModel)]="roundDuration" type="range" min="5" max="60" name="roundDuration"/>
+    <br>
+    <br>
+
+    <label>Change game title (optional)</label>
+    <input class="f-text" [(ngModel)]="gameTitle" #title="ngModel" type="text" name="gameTitle" required minlength="3"/>
+    <div class="f-error" *ngIf="frm.controls.gameTitle?.touched && title.errors?.required">Title field is required!</div>
+    <div class="f-error" *ngIf="title.touched && title.errors?.minlength">Title too short!</div>
+    <!-- <button type="submit">Submit</button> -->
+  </form>
+</div>
+
+<div class="text-center score"
+*ngIf="started"
+>
   Score: {{ getScore() }}
 </div>
 
@@ -16,9 +35,9 @@
   ></app-word>
 </div>
 
-<div
+<div class="end-word text-center"
   *ngIf="started && !gameOver && word?.length==0">
-  Слова закончились
+  Слова закончились!
 </div>
 
 <button
@@ -28,7 +47,7 @@
   Start
 </button>
 
-<div [hidden]="!started || gameOver" class="text-center">
+<div [hidden]="!started || gameOver" class="text-center time-left">
   Time left:
   <app-timer
     #timer
@@ -38,25 +57,15 @@
 </div>
 
 <div *ngIf="gameOver" class="history">
+  <div class="text-center game-over">Time is over!<br>Check and update your results if neded.</div>
   <app-word *ngFor="let word of history"
             [word]="word.word"
             [guessed]="word.guessed"
             (played)="onWordReplayed($event)">
   </app-word>
-  <div class="text-center">GAME OVER</div>
+
 </div>
 
-<div>
-  <form #frm="ngForm" (ngSubmit)="onFormSubmit(frm)">
-    <label>Round duration: {{ roundDuration }}(sec.)</label>
-    <input [(ngModel)]="roundDuration" type="range" min="10" max="180" name="roundDuration"/>
 
-    <label>Game title: </label>
-    <input [(ngModel)]="gameTitle" #title="ngModel" type="text" name="gameTitle" required minlength="5"/>
-    <div *ngIf="frm.controls.gameTitle?.touched && title.errors?.required">This field is required!</div>
-    <div *ngIf="title.touched && title.errors?.minlength">Its too short!</div>
-    <button type="submit">Submit</button>
-  </form>
-</div>
 
 

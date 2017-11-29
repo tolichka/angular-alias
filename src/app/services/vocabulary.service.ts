@@ -21,7 +21,7 @@ export class VocabularyService {
 
   async getNextWord() {
     await this.httpPromise;
+    this.wordId = Math.floor(Math.random() * this.vocabulary.length);
     return this.vocabulary[this.wordId++] || '';
   }
-
 }

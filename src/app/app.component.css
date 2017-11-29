@@ -1,15 +1,81 @@
+app-word {
+  display: block;
+  border: 1px solid gray;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
 app-timer {
   display: inline-block;
 }
+
+.end-word {
+  color: green;
+  padding-bottom: 20px;
+}
+
 .start-btn {
   display: block;
   margin: 0 auto;
   width: 100px;
+  height: 100px;
+  font-size: 20px;
+  line-height: 40px;
+  border-radius: 50%;
+  background: green;
+  color: #fff;
+  border: none;
 }
+
 .history, .word {
-  max-width: 280px;
+  max-width: 400px;
   margin: 0 auto;
 }
+
 label {
-  display: block
+  display: block;
+  margin-bottom: 10px;
+}
+
+.time-left {
+  font-size: 20px;
+  color: green;
+}
+
+.game-over {
+  color: red;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.form-settings {
+  max-width: 400px;
+  margin: 0 auto 40px;
+  text-align: center;
+}
+
+.f-error {
+  padding-top: 10px;
+  color: red;
+}
+
+.f-range {
+  width: 250px;
+}
+
+.f-text {
+  width: 300px;
+  line-height: 30px;
+  height: 30px;
+  font-size: 14px;
+  text-align: center;
+  background: none;
+  color: #999;
+  border: 1px solid gray;
+  border-radius: 0;
+  padding: 5px;
+}
+
+.f-text:active, .f-text:focus {
+  color: #fff;
 }

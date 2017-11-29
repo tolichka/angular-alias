@@ -15,8 +15,3 @@ export class WordComponent implements OnInit {
   }
 
 }
-// <app-word
-// word="блокчейн"
-// (guessed)="onWordGuessed()"
-// (skipped)="onWordSkipped()"
-//   ></app-word>
